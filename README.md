@@ -17,9 +17,13 @@ Simple progress indicator.
 
 Currently has two widgets - ProgressBar and AnimatedProgressBar.
 
-## Getting started
+## How it looks
 
-Add to pubspec.yaml and import to your code.
+
+
+https://user-images.githubusercontent.com/30658712/181821804-a7d12f4c-7eac-4bef-b741-39b152f89e82.mp4
+
+
 
 ## Usage
 Linear progress bar has two implementation: one with external value control and one with 
