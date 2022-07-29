@@ -19,13 +19,35 @@ Currently has two widgets - ProgressBar and AnimatedProgressBar.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add to pubspec.yaml and import to your code.
 
 ## Usage
-Linear progress bar has two implementation: one with external value control and one with
-animation controller and duration parameter.
+Linear progress bar has two implementation: one with external value control and one with 
+duration and curve parameter. 
 
+The minimum working sample:   
+```dart
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: ProgressBar(
+            value: 0.5,
+            //specify only one: color or gradient
+            //color:Colors.red,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.yellowAccent, Colors.deepOrange],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+```
+Specifying all parameters:   
 ```dart
   @override
   Widget build(BuildContext context) {
@@ -50,7 +72,29 @@ animation controller and duration parameter.
     );
   }
 ```
-
+Animated version minimum working sample:
+```dart
+  @override
+Widget build(BuildContext context) {
+  return const MaterialApp(
+    home: Scaffold(
+      body: Center(
+        child: AnimatedProgressBar(
+          duration: Duration(seconds: 2),
+          //specify only one: color or gradient
+          //color:Colors.red,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.yellowAccent, Colors.deepOrange],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+```
+Animated version with all parameters:   
 ```dart
   @override
 Widget build(BuildContext context) {
@@ -79,6 +123,4 @@ Widget build(BuildContext context) {
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+For issues visit issues section on github.
