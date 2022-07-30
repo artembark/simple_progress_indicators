@@ -15,7 +15,7 @@ Simple progress indicators package with solid colors and gradients. Can be used 
 ### ProgressBar
 `ProgressBar` is a basic linear indicator widget. It's a _Stateless Widget_ that produces basic horizontal rounded rectangle with optional background rounded rectangle underneath.
 Include it in your `build` method like:
-```dart
+```
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -61,7 +61,7 @@ It has several configurable parameters:
 - `backgroundColor` - solid indicator background color, defaults to transparent
 - `curve` - animation curve, defaults to linear. For other curves check [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html)
 
-```dart
+```
 ProgressBarAnimation(  
   duration: const Duration(seconds: 2),  
   gradient: const LinearGradient(  
@@ -88,7 +88,7 @@ It has several configurable parameters:
 - `curve` - animation curve, defaults to linear. For other curves check [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html)
 - `onEnd` - callback to trigger additional actions (e.g. another animation) at the end of the current animation
 
-```dart
+```
 AnimatedProgressBar(  
   value: full ? 1.0 : 0.0,  
   duration: const Duration(seconds: 3),  
