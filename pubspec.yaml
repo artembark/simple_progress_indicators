@@ -1,6 +1,6 @@
 name: simple_progress_indicators
 description: Simple progress indicators package with solid colors and gradients. Can be used to show progress or for simple animation.
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/artembark/simple_progress_indicators
 
 environment:
