@@ -2,7 +2,7 @@ Simple progress indicators package with solid colors and gradients. Can be used 
 
 # How it looks
 <div align="center">
-    <img src="/display/progressbar.jpg"</img> 
+    <img src="https://user-images.githubusercontent.com/30658712/181866655-3741cd9e-623a-41f3-acaa-b35e18dd89b5.jpg"</img> 
 </div>
 
 # Table of contents
@@ -108,7 +108,7 @@ For full demo check `examples` folder.
 
 ## Animation demo
 <div align="left">
-    <img src="/display/linear_demo.gif" width="400px"</img> 
+    <img src="https://user-images.githubusercontent.com/30658712/181866672-79f96781-2fd1-4cea-bcd2-b9524033673c.gif" width="400px"</img> 
 </div>
 
 ## Additional information
