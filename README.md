@@ -1,7 +1,9 @@
 Simple progress indicators package with solid colors and gradients. Can be used to show progress or for simple progress bar animation. 
 
 # How it looks
-![progressbar](display/progressbar.jpg)
+<div align="center">
+    <img src="/display/progressbar.jpg"</img> 
+</div>
 
 # Table of contents
 - [Linear Progress indicator](#linear-progress-indicator)
@@ -105,7 +107,9 @@ AnimatedProgressBar(
 For full demo check `examples` folder.
 
 ## Animation demo
-![linear_demo](display/linear_demo.gif)
+<div align="left">
+    <img src="/display/linear_demo.gif" width="400px"</img> 
+</div>
 
 ## Additional information
 
