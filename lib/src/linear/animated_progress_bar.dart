@@ -15,17 +15,17 @@ import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 /// Optional [curve] defaults to [Curves.linear]
 class AnimatedProgressBar extends ImplicitlyAnimatedWidget {
   const AnimatedProgressBar({
-    super.key,
-    required super.duration,
+    key,
+    required duration,
     required this.value,
     this.width = 200.0,
     this.height = 10.0,
     this.color,
     this.gradient,
     this.backgroundColor = Colors.transparent,
-    super.curve = Curves.linear,
-    super.onEnd,
-  });
+    curve = Curves.linear,
+    onEnd,
+  }) : super(key: key, duration: duration, curve: curve, onEnd: onEnd);
 
   ///progress bar width
   final double width;

@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Lowered min dart sdk version.
+
 ## 0.1.2
 
 * Readme update.
