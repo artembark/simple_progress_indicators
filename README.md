@@ -1,35 +1,20 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+Simple progress indicators package with solid colors and gradients. Can be used to show progress or for simple progress bar animation. 
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+# How it looks
+![[progressbar.png]]
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+# Table of contents
+-[Linear Progress Bar]
+	- Linear Progress indicator
+		- [ProgressBar]()
+		- ProgressBarAnimation
+		- AnimatedProgressBar
 
-Simple progress indicator.
-
-## Features
-
-Currently has two widgets - ProgressBar and AnimatedProgressBar.
-
-## How it looks
-
-
-
-https://user-images.githubusercontent.com/30658712/181821804-a7d12f4c-7eac-4bef-b741-39b152f89e82.mp4
-
-
-
-## Usage
-Linear progress bar has two implementation: one with external value control and one with 
-duration and curve parameter. 
-
-The minimum working sample:   
+# Usage
+## Linear Progress indicator
+### ProgressBar
+`ProgressBar` is a basic linear indicator widget. It's a _Stateless Widget_ that produces basic horizontal rounded rectangle with optional background rounded rectangle underneath.
+Include it in your `build` method like:
 ```dart
   @override
   Widget build(BuildContext context) {
@@ -51,80 +36,77 @@ The minimum working sample:
     );
   }
 ```
-Specifying all parameters:   
+
+It has several configurable parameters:
+- `value` - current indicator value, where `0.0` is 0% progress, `1.0` is 100% progress
+- `width` - indicator width, defaults to `200.0`
+- `height` - indicator height, defaults to `10.0`
+- `color` - solid indicator fill color
+- `gradient` - gradient fill, accepts [Gradient class](https://api.flutter.dev/flutter/painting/Gradient-class.html)
+- `backgroundColor` - solid indicator background color, defaults to transparent
+
+Minimum working widget requires only a `value` and `color` OR `gradient` property. **NOTE:** Specifying both properties is not accepted.
+
+### ProgressBarAnimation
+`ProgressBarAnimation` is a simple animating progress bar widget.
+It animates `ProgressBar` widget for a given `duration`. 
+Animation starts at the time the widget is built.
+
+It has several configurable parameters:
+- `duration` - 0% to 100% animation duration 
+- `width` - indicator width, defaults to `200.0`
+- `height` - indicator height, defaults to `10.0`
+- `color` - solid indicator fill color
+- `gradient` - gradient fill, accepts [Gradient class](https://api.flutter.dev/flutter/painting/Gradient-class.html)
+- `backgroundColor` - solid indicator background color, defaults to transparent
+- `curve` - animation curve, defaults to linear. For other curves check [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html)
+
 ```dart
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: ProgressBar(
-            value: 0.5,
-            width: 200.0,
-            height: 10.0,
-            //specify only one: color or gradient
-            //color:Colors.red,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.yellowAccent, Colors.deepOrange],
-            ),
-            backgroundColor: Colors.grey,
-          ),
-        ),
-      ),
-    );
-  }
+ProgressBarAnimation(  
+  duration: const Duration(seconds: 2),  
+  gradient: const LinearGradient(  
+    colors: [  
+      Colors.blue,  
+      Colors.purple,  
+    ],  
+  ),  
+  backgroundColor: Colors.grey.withOpacity(0.4),  
+),
 ```
-Animated version minimum working sample:
+
+### AnimatedProgressBar
+`AnimatedProgressBar` is a `ImplicitlyAnimatedWidget`. It behaves like other flutter AnimatedFoo widgets. This animates `value` parameter changes for a given `duration`. Animation starts only when one (initial) value changes to other (final) value. See the example below.
+
+It has several configurable parameters:
+- `value` - value widget animates to, need to be changed
+- `duration` - initial value to final value animation duration 
+- `width` - indicator width, defaults to `200.0`
+- `height` - indicator height, defaults to `10.0`
+- `color` - solid indicator fill color
+- `gradient` - gradient fill, accepts [Gradient class](https://api.flutter.dev/flutter/painting/Gradient-class.html)
+- `backgroundColor` - solid indicator background color, defaults to transparent
+- `curve` - animation curve, defaults to linear. For other curves check [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html)
+- `onEnd` - callback to trigger additional actions (e.g. another animation) at the end of the current animation
+
 ```dart
-  @override
-Widget build(BuildContext context) {
-  return const MaterialApp(
-    home: Scaffold(
-      body: Center(
-        child: AnimatedProgressBar(
-          duration: Duration(seconds: 2),
-          //specify only one: color or gradient
-          //color:Colors.red,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.yellowAccent, Colors.deepOrange],
-          ),
-        ),
-      ),
-    ),
-  );
-}
+AnimatedProgressBar(  
+  value: full ? 1.0 : 0.0,  
+  duration: const Duration(seconds: 3),  
+  gradient: const LinearGradient(  
+    colors: [  
+      Colors.amber,  
+      Colors.red,  
+    ],  
+  ),  
+  backgroundColor: Colors.grey.withOpacity(0.4),  
+),
 ```
-Animated version with all parameters:   
-```dart
-  @override
-Widget build(BuildContext context) {
-  return const MaterialApp(
-    home: Scaffold(
-      body: Center(
-        child: AnimatedProgressBar(
-          duration: Duration(seconds: 2),
-          width: 200.0,
-          height: 10.0,
-          //specify only one: color or gradient
-          //color:Colors.red,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.yellowAccent, Colors.deepOrange],
-          ),
-          backgroundColor: Colors.grey,
-          curve: Curves.ease,
-        ),
-      ),
-    ),
-  );
-}
-```
+
+For full demo check `examples` folder.
+
+## Animation demo
+![[linear_demo.mp4]]
 
 ## Additional information
 
-For issues visit issues section on github.
+For issues and animation ideas visit issues section on github homepage.

@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
+///Foreground progress bar painter
+///Requires [value] to set progress
+///Optional [gradient] or [color] for bar infill
 class ProgressPainter extends CustomPainter {
   const ProgressPainter({required this.value, this.gradient, this.color});
 
+  ///current progress bar value
   final double value;
+
+  ///progress bar gradient infill
   final Gradient? gradient;
+
+  ///progress bar gradient color
   final Color? color;
 
   @override
@@ -16,7 +24,6 @@ class ProgressPainter extends CustomPainter {
     if (color != null) {
       paint.color = color!;
     }
-
     canvas.clipRRect(RRect.fromRectAndRadius(
         Offset.zero & size, Radius.circular(size.height / 2)));
     canvas.drawRRect(

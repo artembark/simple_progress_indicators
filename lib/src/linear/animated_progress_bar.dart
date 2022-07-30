@@ -1,65 +1,80 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 
-import 'progress_bar.dart';
+/// Animated progress bar. Behaves like implicitly animated widget.
+/// Check basic implicit animated Flutter widgets like [AnimatedContainer]
+/// It animates [value] changes.
+/// Requires [duration] to set filling duration timer
+/// [onEnd] callback to trigger additional actions (e.g. another animation)
+/// at the end of the current animation
+/// [color] or [gradient] to fill the progress bar. Only one parameter is allowed.
+/// Optional [backgroundColor], defaults to transparent
+/// Optional [width] defaults to 200.0
+/// Optional [height] defaults to 10.0
+/// Optional [curve] defaults to [Curves.linear]
+class AnimatedProgressBar extends ImplicitlyAnimatedWidget {
+  const AnimatedProgressBar({
+    super.key,
+    required super.duration,
+    required this.value,
+    this.width = 200.0,
+    this.height = 10.0,
+    this.color,
+    this.gradient,
+    this.backgroundColor = Colors.transparent,
+    super.curve = Curves.linear,
+    super.onEnd,
+  });
 
-class AnimatedProgressBar extends StatefulWidget {
-  const AnimatedProgressBar(
-      {Key? key,
-      required this.duration,
-      this.width = 200.0,
-      this.height = 10.0,
-      this.color,
-      this.gradient,
-      this.backgroundColor = Colors.transparent,
-      this.curve = Curves.linear})
-      : super(key: key);
-
-  final Duration duration;
+  ///progress bar width
   final double width;
+
+  ///progress bar height
   final double height;
-  final Color? color;
+
+  ///current progress value
+  final double? value;
+
+  ///progress bar gradient parameter
   final Gradient? gradient;
+
+  ///progress bar color parameter
+  final Color? color;
+
+  ///progress bar color parameter
   final Color backgroundColor;
-  final Curve curve;
 
   @override
-  State<AnimatedProgressBar> createState() => _AnimatedProgressBarState();
+  AnimatedWidgetBaseState<AnimatedProgressBar> createState() =>
+      _AnimatedBarState();
 }
 
-class _AnimatedProgressBarState extends State<AnimatedProgressBar>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation _progressAnimation;
+class _AnimatedBarState extends AnimatedWidgetBaseState<AnimatedProgressBar> {
+  Tween<double>? _progressValue;
 
   @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration);
-    _progressAnimation = Tween<double>(begin: 0.0, end: 1.0)
-        .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  void forEachTween(TweenVisitor<dynamic> visitor) {
+    _progressValue = visitor(_progressValue, widget.value,
+        (dynamic value) => Tween<double>(begin: value)) as Tween<double>?;
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, _) {
-        return ProgressBar(
-          value: _progressAnimation.value,
-          width: widget.width,
-          height: widget.height,
-          gradient: widget.gradient,
-          color: widget.color,
-          backgroundColor: widget.backgroundColor,
-        );
-      },
+    return ProgressBar(
+      value: _progressValue?.evaluate(animation),
+      width: widget.width,
+      height: widget.height,
+      gradient: widget.gradient,
+      color: widget.color,
+      backgroundColor: widget.backgroundColor,
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder description) {
+    super.debugFillProperties(description);
+    description.add(DiagnosticsProperty<Tween>('progressValue', _progressValue,
+        showName: false, defaultValue: null));
   }
 }
