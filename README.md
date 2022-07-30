@@ -1,14 +1,14 @@
 Simple progress indicators package with solid colors and gradients. Can be used to show progress or for simple progress bar animation. 
 
 # How it looks
-![[progressbar.png]]
+![progressbar.png](/display/progressbar.png)
 
 # Table of contents
--[Linear Progress Bar]
-	- Linear Progress indicator
-		- [ProgressBar]()
-		- ProgressBarAnimation
-		- AnimatedProgressBar
+- [Linear Progress indicator](#linear-progress-indicator)
+	- [ProgressBar](#progressbar)
+	- [ProgressBarAnimation](#progressbaranimation)
+	- [AnimatedProgressBar](#animatedprogressbar)
+	- [Animation demo](#animation-demo)
 
 # Usage
 ## Linear Progress indicator
@@ -105,7 +105,7 @@ AnimatedProgressBar(
 For full demo check `examples` folder.
 
 ## Animation demo
-![[linear_demo.mp4]]
+https://user-images.githubusercontent.com/30658712/181865793-590c80f1-6512-4163-a1d0-62603590c330.mp4
 
 ## Additional information
 
