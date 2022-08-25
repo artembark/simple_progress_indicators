@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 ///Foreground progress bar painter
 ///Requires [value] to set progress
 ///Optional [gradient] or [color] for bar infill
-class ProgressPainter extends CustomPainter {
-  const ProgressPainter({required this.value, this.gradient, this.color});
+class ProgressBarPainter extends CustomPainter {
+  const ProgressBarPainter({required this.value, this.gradient, this.color});
 
   ///current progress bar value
   final double value;
@@ -18,14 +18,26 @@ class ProgressPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint();
+    setColorOrGradient(paint, size);
+    drawClipForBeginning(canvas, size);
+    drawProgressBar(canvas, size, paint);
+  }
+
+  void setColorOrGradient(Paint paint, Size size) {
     if (gradient != null) {
       paint.shader = gradient?.createShader(Offset.zero & size);
     }
     if (color != null) {
       paint.color = color!;
     }
+  }
+
+  void drawClipForBeginning(Canvas canvas, Size size) {
     canvas.clipRRect(RRect.fromRectAndRadius(
         Offset.zero & size, Radius.circular(size.height / 2)));
+  }
+
+  void drawProgressBar(Canvas canvas, Size size, Paint paint) {
     canvas.drawRRect(
         RRect.fromRectAndRadius(
             Rect.fromLTRB(0, 0, size.width * value, size.height),
@@ -34,7 +46,7 @@ class ProgressPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant ProgressPainter oldDelegate) {
+  bool shouldRepaint(covariant ProgressBarPainter oldDelegate) {
     return value != oldDelegate.value;
   }
 }

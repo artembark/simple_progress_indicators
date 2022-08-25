@@ -50,7 +50,7 @@ class ProgressBarAnimation extends StatefulWidget {
 class _ProgressBarAnimationState extends State<ProgressBarAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation _progressAnimation;
+  late Animation<double> _progressAnimation;
 
   @override
   void initState() {

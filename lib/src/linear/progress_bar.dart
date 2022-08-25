@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'background_painter.dart';
-import 'progress_painter.dart';
+import 'progress_bar_background_painter.dart';
+import 'progress_bar_painter.dart';
 
 /// Basic progress bar widget.
-///
+/// Use it for static progress indicators or control with your own
+/// animation controller.
 /// Requires [value] to show progress
 /// [color] or [gradient] to fill the progress bar. Only one parameter is allowed.
 /// Optional [backgroundColor], defaults to transparent
@@ -36,7 +37,7 @@ class ProgressBar extends StatelessWidget {
   final double height;
 
   ///current progress value
-  final double? value;
+  final double value;
 
   ///progress bar gradient parameter
   final Gradient? gradient;
@@ -51,12 +52,12 @@ class ProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       size: Size(width, height),
-      foregroundPainter: ProgressPainter(
-        value: value!,
+      foregroundPainter: ProgressBarPainter(
+        value: value,
         color: color,
         gradient: gradient,
       ),
-      painter: BackgroundPainter(
+      painter: ProgressBarBackgroundPainter(
         backgroundColor: backgroundColor,
       ),
     );

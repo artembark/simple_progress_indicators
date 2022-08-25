@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 ///Background progress bar painter
 ///Requires [backgroundColor] to set progress bar background color
-class BackgroundPainter extends CustomPainter {
-  const BackgroundPainter({required this.backgroundColor});
+class ProgressBarBackgroundPainter extends CustomPainter {
+  const ProgressBarBackgroundPainter({required this.backgroundColor});
 
   ///progress bar backgroundColor
   final Color backgroundColor;
@@ -18,5 +18,6 @@ class BackgroundPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant BackgroundPainter oldDelegate) => false;
+  bool shouldRepaint(covariant ProgressBarBackgroundPainter oldDelegate) =>
+      false;
 }

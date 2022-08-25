@@ -15,16 +15,16 @@ import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 /// Optional [curve] defaults to [Curves.linear]
 class AnimatedProgressBar extends ImplicitlyAnimatedWidget {
   const AnimatedProgressBar({
-    key,
-    required duration,
+    Key? key,
+    required Duration duration,
     required this.value,
     this.width = 200.0,
     this.height = 10.0,
     this.color,
     this.gradient,
     this.backgroundColor = Colors.transparent,
-    curve = Curves.linear,
-    onEnd,
+    Curve curve = Curves.linear,
+    void Function()? onEnd,
   }) : super(key: key, duration: duration, curve: curve, onEnd: onEnd);
 
   ///progress bar width
@@ -56,13 +56,14 @@ class _AnimatedBarState extends AnimatedWidgetBaseState<AnimatedProgressBar> {
   @override
   void forEachTween(TweenVisitor<dynamic> visitor) {
     _progressValue = visitor(_progressValue, widget.value,
-        (dynamic value) => Tween<double>(begin: value)) as Tween<double>?;
+            (dynamic value) => Tween<double>(begin: value as double))
+        as Tween<double>?;
   }
 
   @override
   Widget build(BuildContext context) {
     return ProgressBar(
-      value: _progressValue?.evaluate(animation),
+      value: _progressValue?.evaluate(animation) ?? 0,
       width: widget.width,
       height: widget.height,
       gradient: widget.gradient,
