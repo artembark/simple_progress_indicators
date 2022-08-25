@@ -15,6 +15,7 @@ class SimpleProgressIndicatorsApp extends StatefulWidget {
 
 class _SimpleProgressIndicatorsAppState
     extends State<SimpleProgressIndicatorsApp> {
+  //variable for holding animation state
   bool full = false;
 
   @override
@@ -80,6 +81,39 @@ class _SimpleProgressIndicatorsAppState
                     },
                     child: Text(full ? 'To 0%' : 'To 100%'),
                   )
+                ],
+              ),
+              Column(
+                children: const [
+                  Text('SineBarAnimation'),
+                  SineBarAnimation(
+                    duration: Duration(seconds: 2),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.blue,
+                        Colors.purple,
+                      ],
+                    ),
+                    height: 50,
+                    sineLineWidth: 10.0,
+                  ),
+                ],
+              ),
+              Column(
+                children: const [
+                  Text('ArcBarAnimation'),
+                  ArcBarAnimation(
+                    arcLineWidth: 3,
+                    duration: Duration(seconds: 2),
+                    arcsAmount: 6,
+                    height: 60,
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.blue,
+                        Colors.purple,
+                      ],
+                    ),
+                  ),
                 ],
               )
             ],

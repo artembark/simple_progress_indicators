@@ -1,0 +1,1 @@
+enum StartDirection { up, down }
