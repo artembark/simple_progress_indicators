@@ -84,19 +84,22 @@ class _SimpleProgressIndicatorsAppState
                 ],
               ),
               Column(
-                children: const [
-                  Text('SineBarAnimation'),
+                children: [
+                  const Text('SineBarAnimation'),
                   SineBarAnimation(
-                    duration: Duration(seconds: 2),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.blue,
-                        Colors.purple,
-                      ],
-                    ),
-                    height: 50,
-                    sineLineWidth: 10.0,
-                  ),
+                      duration: const Duration(seconds: 2),
+                      gradient: const LinearGradient(
+                        colors: [
+                          Colors.blue,
+                          Colors.purple,
+                        ],
+                      ),
+                      //width: 250,
+                      height: 40,
+                      backgroundColor: Colors.grey.withOpacity(0.4),
+                      wavesNumber: 4,
+                      sineLineWidth: 5.0,
+                      sineOffset: 0.5),
                 ],
               ),
               Column(

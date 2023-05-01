@@ -8,24 +8,16 @@ import '../linear_indicators.dart';
 ///Foreground progress bar painter
 ///Requires [value] to set progress
 ///Optional [gradient] or [color] for bar infill
-class SineBarPainter extends CustomPainter {
-  const SineBarPainter({
-    required this.value,
-    this.gradient,
-    this.color,
+class SineBarBackgroundPainter extends CustomPainter {
+  const SineBarBackgroundPainter({
+    required this.color,
     required this.wavesNumber,
     required this.sineOffset,
     required this.sineLineWidth,
   });
 
-  ///current progress bar value
-  final double value;
-
-  ///progress bar gradient infill
-  final Gradient? gradient;
-
   ///progress bar gradient color
-  final Color? color;
+  final Color color;
 
   ///waves number
   final int wavesNumber;
@@ -41,21 +33,11 @@ class SineBarPainter extends CustomPainter {
     Paint paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = sineLineWidth
+      ..color = color
       ..strokeCap = StrokeCap.round;
-    if (gradient != null) {
-      paint.shader = gradient?.createShader(Offset.zero & size);
-    }
-    if (color != null) {
-      paint.color = color!;
-    }
 
-    Path sinePath = createSinePath(size);
-    PathMetrics pathMetricsForSine = sinePath.computeMetrics();
-    for (PathMetric pathMetricForSine in pathMetricsForSine) {
-      Path extractPath =
-          pathMetricForSine.extractPath(0.0, pathMetricForSine.length * value);
-      canvas.drawPath(extractPath, paint);
-    }
+    Path path = createSinePath(size);
+    canvas.drawPath(path, paint);
   }
 
   Path createSinePath(Size size) {
@@ -75,7 +57,7 @@ class SineBarPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant SineBarPainter oldDelegate) {
-    return value != oldDelegate.value;
+  bool shouldRepaint(covariant SineBarBackgroundPainter oldDelegate) {
+    return false;
   }
 }

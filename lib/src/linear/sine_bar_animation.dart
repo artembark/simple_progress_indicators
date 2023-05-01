@@ -20,8 +20,8 @@ class SineBarAnimation extends StatefulWidget {
       this.gradient,
       this.backgroundColor = Colors.transparent,
       this.curve = Curves.linear,
-      this.startDirection = StartDirection.up,
-      this.wavesAmount = 6,
+      this.sineOffset = 0,
+      this.wavesNumber = 6,
       this.sineLineWidth = 10.0})
       : super(key: key);
 
@@ -46,11 +46,11 @@ class SineBarAnimation extends StatefulWidget {
   ///progress bar animation curve
   final Curve curve;
 
-  ///waves amount
-  final int wavesAmount;
+  ///waves number
+  final int wavesNumber;
 
-  ///specify moving direction
-  final StartDirection startDirection;
+  ///specify sine offset
+  final double sineOffset;
 
   ///specify sine line width
   final double sineLineWidth;
@@ -91,7 +91,8 @@ class _SineBarAnimationState extends State<SineBarAnimation>
           gradient: widget.gradient,
           color: widget.color,
           backgroundColor: widget.backgroundColor,
-          startDirection: widget.startDirection,
+          wavesNumber: widget.wavesNumber,
+          sineOffset: widget.sineOffset,
           sineLineWidth: widget.sineLineWidth,
         );
       },

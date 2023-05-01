@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_progress_indicators/src/linear/sine_bar_background_painter.dart';
 
 import '../linear_indicators.dart';
 
@@ -20,8 +21,8 @@ class SineBar extends StatelessWidget {
       this.color,
       this.backgroundColor = Colors.transparent,
       this.gradient,
-      this.wavesAmount = 6,
-      this.startDirection = StartDirection.up,
+      this.wavesNumber = 6,
+      this.sineOffset = 0,
       this.sineLineWidth = 10.0})
       : assert(
           gradient == null || color == null,
@@ -51,11 +52,11 @@ class SineBar extends StatelessWidget {
   ///progress bar color parameter
   final Color backgroundColor;
 
-  ///waves amount
-  final int wavesAmount;
+  ///waves number
+  final int wavesNumber;
 
-  ///specify moving direction
-  final StartDirection startDirection;
+  ///specify sine offset
+  final double sineOffset;
 
   ///specify sine line width
   final double sineLineWidth;
@@ -68,8 +69,13 @@ class SineBar extends StatelessWidget {
           value: value,
           color: color,
           gradient: gradient,
-          wavesAmount: wavesAmount,
-          startDirection: startDirection,
+          wavesNumber: wavesNumber,
+          sineOffset: sineOffset,
+          sineLineWidth: sineLineWidth),
+      painter: SineBarBackgroundPainter(
+          color: backgroundColor,
+          wavesNumber: wavesNumber,
+          sineOffset: sineOffset,
           sineLineWidth: sineLineWidth),
     );
   }
